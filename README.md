@@ -10,17 +10,17 @@ This script is designed to reset the licensing and configuration files for vario
     - A list of IDE names is defined under the variable `IDE_NAMES`.
 
 3. **Deleting Evaluation Folders and Configuration Files:**
-    - The script iterates through each IDE name defined in `IDE_NAMES`.
+    - The script iterates through each IDE name defined in `IDE_NAMES`. (In the interface you can choose which IDE, or all!)
     - For each IDE, it iterates through directories within the user's profile directory that match the IDE name pattern.
     - It checks for the existence of the `eval` directory and `other.xml` file under the `config` directory of each found IDE directory.
     - If found, it deletes the `eval` directory and `other.xml` file, which are assumed to contain licensing and configuration information respectively.
 
-4. **Deleting JetBrains AppData and Registry Entry:**
+5. **Deleting JetBrains AppData and Registry Entry:**
     - The script checks for the existence of a JetBrains directory within the `AppData` directory.
     - If found, it deletes the entire JetBrains directory.
     - Additionally, it deletes a specific registry entry under `HKEY_CURRENT_USER\Software\JavaSoft`.
 
-5. **Ending the Script:**
+6. **Ending the Script:**
     - `ENDLOCAL` is used to close the localized environment setup by `SETLOCAL`, returning the environment to its original state.
 
 ## Usage
