@@ -25,6 +25,3 @@ This script is designed to reset the licensing and configuration files for vario
 
 ## Usage
 Run this script in a command prompt with administrative privileges to ensure it has the necessary permissions to delete files, directories, and registry entries.
-
-## Warning
-Executing this script can significantly alter the configuration of your JetBrains IDEs. It essentially removes local records, making the system behave as if the IDEs are being installed anew or as if system data was being restored. However, be aware that running this script may violate the terms of service of the JetBrains software. It's crucial to understand the implications of running this script and to ensure you have backups of any important data.
