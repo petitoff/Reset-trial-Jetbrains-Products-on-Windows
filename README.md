@@ -8,7 +8,7 @@ This script is designed to reset the licensing and configuration files for vario
 
 2. **Deleting JetBrains AppData and Registry Entry:**
     - The script checks for the existence of a JetBrains directory within the `AppData` directory.
-    - If found, it deletes license files it.
+    - If found, it deletes only license files from it.
     - Additionally, it deletes a specific registry entry under `HKEY_CURRENT_USER\Software\JavaSoft`.
 
 3. **Ending the Script:**
