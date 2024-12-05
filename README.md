@@ -1,4 +1,4 @@
-# Reset trial Jetbrains Products on Windows
+# Reset trial Jetbrains Products on Windows and Linux
 
 This script is designed to reset the licensing and configuration files for various JetBrains IDEs on a Windows system. It removes specific directories and files related to licensing and configurations, and also cleans up certain registry entries.
 ## How it Works
