@@ -1,26 +1,24 @@
 @echo off
+NET SESSION >nul 2>&1
+IF %errorLevel% NEQ 0 (
+    echo This script requires administrator privileges.
+    echo Please right-click on the script and select "Run as administrator"
+    pause
+    exit /B 1
+)
+
 SETLOCAL
-
-REM Define IDE names
-SET IDE_NAMES="WebStorm" "IntelliJ" "CLion" "Rider" "GoLand" "PhpStorm" "Resharper" "PyCharm"
-
-REM Delete eval folder with license key and options.xml which contains a reference to it
-FOR %%I IN (%IDE_NAMES%) DO (
-    FOR /D %%a IN ("%USERPROFILE%\.%%I*") DO (
-        IF EXIST "%%a\config\eval" (
-            RD /S /Q "%%a\config\eval"
-        )
-        IF EXIST "%%a\config\options\other.xml" (
-            DEL /Q "%%a\config\options\other.xml"
-        )
-    )
-)
-
-REM Delete registry key and JetBrains folder
+REM Only remove specific evaluation-related files
 IF EXIST "%APPDATA%\JetBrains" (
-    RMDIR /S /Q "%APPDATA%\JetBrains"
+    del "%APPDATA%\JetBrains\PermanentUserId"
+    del "%APPDATA%\JetBrains\PermanentDeviceId"
+    del "%APPDATA%\JetBrains\*\*.key"
+    del "%APPDATA%\JetBrains\*\*.license"
+    del "%APPDATA%\JetBrains\*\bl"
+    del "%APPDATA%\JetBrains\*\crl"
 )
 
+REM Clear JavaSoft registry entries
 REG DELETE "HKEY_CURRENT_USER\Software\JavaSoft" /f
 
 ENDLOCAL
