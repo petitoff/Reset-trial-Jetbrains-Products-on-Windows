@@ -1,30 +1,36 @@
-# Reset trial Jetbrains Products on Windows
+# Reset JetBrains Trial on Windows
+This script safely resets the trial state for JetBrains IDEs on Windows while preserving user configurations and settings. It removes only specific licensing-related files and registry entries.
 
-This script is designed to reset the licensing and configuration files for various JetBrains IDEs on a Windows system. It removes specific directories and files related to licensing and configurations, and also cleans up certain registry entries.
 ## How it Works
-1. **Setting up the Environment:**
-    - `@echo off` is used to prevent the commands within the script from being printed to the console.
-    - `SETLOCAL` is used to ensure that any environment changes made by the script are localized to the script, and do not affect the global system environment.
+1. **Administrative Check:**
+    - The script verifies if it has administrative privileges
+    - If not running as admin, it prompts the user to run as administrator
 
-2. **Defining Target IDEs:**
-    - A list of IDE names is defined under the variable `IDE_NAMES`.
+2. **Cleaning License Data:**
+    - Removes specific licensing-related files from `%APPDATA%\JetBrains`:
+        - `PermanentUserId`
+        - `PermanentDeviceId`
+        - Trial-related key files (`*.key`)
+        - License files (`*.license`)
+        - Blacklist data (`bl`)
+        - Certificate revocation lists (`crl`)
+    - Cleans up JavaSoft registry entries
 
-3. **Deleting Evaluation Folders and Configuration Files:**
-    - The script iterates through each IDE name defined in `IDE_NAMES`.
-    - For each IDE, it iterates through directories within the user's profile directory that match the IDE name pattern.
-    - It checks for the existence of the `eval` directory and `other.xml` file under the `config` directory of each found IDE directory.
-    - If found, it deletes the `eval` directory and `other.xml` file, which are assumed to contain licensing and configuration information respectively.
-
-4. **Deleting JetBrains AppData and Registry Entry:**
-    - The script checks for the existence of a JetBrains directory within the `AppData` directory.
-    - If found, it deletes the entire JetBrains directory.
-    - Additionally, it deletes a specific registry entry under `HKEY_CURRENT_USER\Software\JavaSoft`.
-
-5. **Ending the Script:**
-    - `ENDLOCAL` is used to close the localized environment setup by `SETLOCAL`, returning the environment to its original state.
+3. **Preservation of Settings:**
+    - Maintains all user configurations, preferences, and project settings
+    - Keeps IDE customizations intact
+    - Preserves installed plugins and their settings
 
 ## Usage
-Run this script in a command prompt with administrative privileges to ensure it has the necessary permissions to delete files, directories, and registry entries.
+1. Save the script with a `.bat` extension
+2. Right-click the script and select "Run as administrator"
+3. Allow the script to complete its execution
+
+## Notes
+- User configurations and IDE settings remain untouched
+- Only licensing-related files are affected
+- Requires administrative privileges to modify registry entries
+- For proper development work, consider using licensed versions of JetBrains products
 
 ## Warning
-Executing this script can significantly alter the configuration of your JetBrains IDEs. It essentially removes local records, making the system behave as if the IDEs are being installed anew or as if system data was being restored. However, be aware that running this script may violate the terms of service of the JetBrains software. It's crucial to understand the implications of running this script and to ensure you have backups of any important data.
+This script modifies system files and registry entries related to JetBrains products. Always ensure you understand the implications of running such scripts and have backups of important data. Using JetBrains products should comply with their terms of service.
