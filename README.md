@@ -1,5 +1,5 @@
-# Reset JetBrains Trial on Windows
-This script safely resets the trial state for JetBrains IDEs on Windows while preserving user configurations and settings. It removes only specific licensing-related files and registry entries.
+# Reset trial Jetbrains Products on Windows and Linux
+This script safely resets the trial state for JetBrains IDEs on Windows and Linux while preserving user configurations and settings. It removes only specific licensing-related files and registry entries.
 
 ## How it Works
 1. **Administrative Check:**
